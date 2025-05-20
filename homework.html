@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-family: "標楷體";
+        }
+
+        #land {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px solid #000;
+            width: 590px;
+            height: 687px;
+
+        }
+
+        #black {
+            width: 550px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #red {
+            width: 550px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            color: red;
+        }
+
+        #river {
+            width: 550px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        #mainRow {
+            width: 550px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #emptyRow {
+            width: 550px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #minonRow {
+            width: 550px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #powRow {
+            width: 550px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chess {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .emptychess {
+            width: 50px;
+            height: 50px;
+        }
+
+        .box {
+            width: 63px;
+            height: 63px;
+            border: 1px solid #000;
+        }
+
+
+
+        #boardBlack {
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            display: flex;
+            align-self: center;
+            flex-direction: column;
+            z-index: -1;
+            transform: translate(-50%);
+            border: 1px solid #000;
+        }
+
+        #boardBlack::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 187px;
+            width: 2px;
+            height: 178px;
+            background: black;
+            transform: rotate(315deg);
+            transform-origin: top left;
+        }
+
+        #boardBlack::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 314px;
+            width: 2px;
+            height: 178px;
+            background: black;
+            transform: rotate(45deg);
+            transform-origin: top left;
+        }
+
+        #borderRiver {
+            width: 506px;
+            height: 94px;
+            position: absolute;
+            top: 332px;
+            left: 50%;
+            z-index: -1;
+            border-left: 2px solid #000;
+            border-right: 2px solid #000;
+            transform: translate(-50%);
+        }
+
+        #borderRed {
+            border: 1px solid #000;
+            position: absolute;
+            top: 425px;
+            left: 50%;
+            align-self: center;
+            display: flex;
+            flex-direction: column;
+            z-index: -1;
+            transform: translate(-50%);
+        }
+
+        #borderRed::before {
+            content: '';
+            position: absolute;
+            top: 125px;
+            left: 187px;
+            width: 2px;
+            height: 177px;
+            background: black;
+            transform: rotate(315deg);
+            transform-origin: top left;
+        }
+
+        #borderRed::after {
+            content: '';
+            position: absolute;
+            top: 125px;
+            left: 314px;
+            width: 2px;
+            height: 177px;
+            background: black;
+            transform: rotate(45deg);
+            transform-origin: top left;
+        }
+
+        #row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        #content {
+            /* -webkit-writing-mode: vertical-lr; */
+            writing-mode: vertical-lr
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">棋盤裡，車無輪，馬無韁，叫聲將軍堤防堤防</div>
+    <div id="land">
+        <div id="black">
+            <div id="mainRow">
+                <div class="chess">車</div>
+                <div class="chess">馬</div>
+                <div class="chess">象</div>
+                <div class="chess">士</div>
+                <div class="chess">將</div>
+                <div class="chess">士</div>
+                <div class="chess">象</div>
+                <div class="chess">馬</div>
+                <div class="chess">車</div>
+            </div>
+            <div id="emptyRow">
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+            </div>
+            <div id="powRow">
+                <div class="emptychess"></div>
+                <div class="chess">炮</div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="chess">炮</div>
+                <div class="emptychess"></div>
+            </div>
+            <div id="minonRow">
+                <div class="chess">卒</div>
+                <div class="emptychess"></div>
+                <div class="chess">卒</div>
+                <div class="emptychess"></div>
+                <div class="chess">卒</div>
+                <div class="emptychess"></div>
+                <div class="chess">卒</div>
+                <div class="emptychess"></div>
+                <div class="chess">卒</div>
+            </div>
+            <div id="emptyRow">
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+            </div>
+        </div>
+        <div id="river">
+            <div class="true">楚河</div>
+            <div class="han">漢界</div>
+        </div>
+        <div id="red">
+            <div id="emptyRow">
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+            </div>
+            <div id="minonRow">
+                <div class="chess">兵</div>
+                <div class="emptychess"></div>
+                <div class="chess">兵</div>
+                <div class="emptychess"></div>
+                <div class="chess">兵</div>
+                <div class="emptychess"></div>
+                <div class="chess">兵</div>
+                <div class="emptychess"></div>
+                <div class="chess">兵</div>
+            </div>
+            <div id="powRow">
+                <div class="emptychess"></div>
+                <div class="chess">炮</div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="chess">炮</div>
+                <div class="emptychess"></div>
+            </div>
+            <div id="emptyRow">
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+                <div class="emptychess"></div>
+            </div>
+            <div id="mainRow">
+                <div class="chess">車</div>
+                <div class="chess">馬</div>
+                <div class="chess">相</div>
+                <div class="chess">仕</div>
+                <div class="chess">將</div>
+                <div class="chess">仕</div>
+                <div class="chess">相</div>
+                <div class="chess">馬</div>
+                <div class="chess">車</div>
+            </div>
+        </div>
+    </div>
+    <div id="boardBlack">
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <div id="borderRiver"></div>
+    <div id="borderRed">
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div id="row">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <div id="content">圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</div>
+</body>
+
+</html>
